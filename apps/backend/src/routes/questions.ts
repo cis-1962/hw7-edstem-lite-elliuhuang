@@ -5,6 +5,7 @@ import requireAuth from '../middlewares/require-auth';
 const router = express.Router();
 
 router.get('/', requireAuth, async (req: Request, res: Response) => {
+    console.log(requireAuth);
     try {
         const questions = await Question.find();
         res.status(200).json(questions);

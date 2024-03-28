@@ -33,7 +33,7 @@ router.post('/signup', async (req, res) => {
   });
   
   // Login
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
     if (!req.session) {
         return res.status(500).json({ message: "Session not available" });
     }
@@ -54,11 +54,13 @@ router.post('/login', async (req, res) => {
         }
 
         req.session.userId = user._id;
-        res.status(200).json({ message: "Login successful" });
+        next();
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' });
     }
+}, (req, res) => {
+    res.status(200).json({ message: "Login successful" });
 });
   
 // Logout
