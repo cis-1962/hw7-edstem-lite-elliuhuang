@@ -1,0 +1,16 @@
+meta {
+  name: signup
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8000/api/account/login?username=bob&password=1234
+  body: none
+  auth: none
+}
+
+query {
+  username: bob
+  password: 1234
+}

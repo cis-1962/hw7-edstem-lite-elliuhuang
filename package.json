@@ -14,5 +14,10 @@
   ],
   "dependencies": {
     "turbo": "^1.11.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+    "cookie-session": "^2.1.0"
   }
 }
