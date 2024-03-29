@@ -5,12 +5,24 @@ meta {
 }
 
 post {
-  url: http://localhost:8000/api/account/login?username=bob&password=1234
-  body: none
+  url: http://localhost:8000/api/account/signup
+  body: json
   auth: none
 }
 
-query {
+body:json {
+  {
+    "username": "a",
+    "password": "12345"
+  }
+}
+
+body:text {
+  bob
+  1234
+}
+
+body:multipart-form {
   username: bob
   password: 1234
 }

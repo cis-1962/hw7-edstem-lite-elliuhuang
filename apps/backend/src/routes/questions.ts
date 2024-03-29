@@ -4,8 +4,7 @@ import requireAuth from '../middlewares/require-auth';
 
 const router = express.Router();
 
-router.get('/', requireAuth, async (req: Request, res: Response) => {
-    console.log(requireAuth);
+router.get('/', async (req: Request, res: Response) => {
     try {
         const questions = await Question.find();
         res.status(200).json(questions);
@@ -17,14 +16,17 @@ router.get('/', requireAuth, async (req: Request, res: Response) => {
 
 // Add a question
 router.post('/add', requireAuth, async (req: Request, res: Response) => {
-    const { questionText } = req.body;
-    const author = req.session?.user;
-    if (!questionText) {
+    const { question } = req.body;
+    const author = req.session?.userId;
+    if (!author) {
+      return res.status(400).json({ message: "Not logged in"});
+    }
+    if (!question) {
       return res.status(400).json({ message: "Question text is required" });
     }
   
     try {
-      const newQuestion = new Question({ questionText, author });
+      const newQuestion = new Question({ questionText: question, author: author });
       await newQuestion.save();
       res.status(200).json(newQuestion);
     } catch (error) {

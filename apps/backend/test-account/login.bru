@@ -5,7 +5,14 @@ meta {
 }
 
 post {
-  url: 
-  body: none
+  url: http://localhost:8000/api/account/login
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "username": "bill",
+    "password": "1234"
+  }
 }
