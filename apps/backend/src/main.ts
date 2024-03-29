@@ -21,6 +21,7 @@ app.use(cookieSession({
 
 app.use(bodyParser.json());
 
+// connect MongoDB
 const MONGO_URI = 'mongodb+srv://elliuh:cis1962@edstemlite.3ia3g0c.mongodb.net/?retryWrites=true&w=majority&appName=edstemlite';
 mongoose.connect(MONGO_URI)
   .then(() => {
