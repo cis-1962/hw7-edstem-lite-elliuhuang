@@ -6,8 +6,8 @@ import bodyParser from 'body-parser';
 
 import accountRouter from './routes/account';
 import questionsRouter from './routes/questions';
+import userRouter from './routes/users';
 
-// read environment variables from .env file
 dotenv.config();
 const PORT = process.env.PORT ?? 8000;
 
@@ -15,25 +15,22 @@ const app = express();
 
 app.use(cookieSession({
   name: 'session',
-  keys: ['k1', 'k2'], 
-  maxAge: 60 * 60 * 1000, // 1 hour session
+  keys: ['k1', 'k2'],
+  maxAge: 24 * 60 * 60 * 1000
 }));
 
 app.use(bodyParser.json());
 
-// connect MongoDB
-const MONGO_URI = 'mongodb+srv://elliuh:cis1962@edstemlite.3ia3g0c.mongodb.net/?retryWrites=true&w=majority&appName=edstemlite';
+const MONGO_URI = 'mongodb+srv://elliuh:cis1962@edstemlite.3ia3g0c.mongodb.net/?retryWrites=true&w=majority&appName=edstemlite'
 mongoose.connect(MONGO_URI)
-  .then(() => {
-    console.log('Successfully connected to MongoDB.');
-  })
   .catch((error) => {
-    console.error('Error connecting to MongoDB:', error.message);
+    // eslint-disable-next-line no-console
+    console.error('MongoDB connection error:', error.message);
   });
 
 // define root route
 app.get('/api/hello', (_, res) => {
-  res.json({ message: 'Hello, frontend!' });
+  return res.json({ message: 'Hello, frontend!' });
 });
 
 // account routes
@@ -41,6 +38,9 @@ app.use('/api/account', accountRouter);
 
 // question routes
 app.use('/api/questions', questionsRouter);
+
+// user routes
+app.use('/api/user', userRouter);
 
 // listen
 app.listen(PORT, () => {

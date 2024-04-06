@@ -10,8 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.14",
+    "axios": "^1.6.8",
+    "install": "^0.13.0",
+    "npm": "^10.5.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "react-toastify": "^10.0.5",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@cis-1962/eslint-config": "^1.0.4",

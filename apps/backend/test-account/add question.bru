@@ -6,6 +6,12 @@ meta {
 
 post {
   url: http://localhost:8000/api/questions/add
-  body: none
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "question": "where are my pants?"
+  }
 }
